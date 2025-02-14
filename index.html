@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Josh's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+       body {
+    margin: 0;
+    font-family: 'Orbit', sans-serif;
+    background: #1a1a1a;
+    background-size: cover;
+    color: white;
+    padding-top: 60px;
+    text-align: center;
+}
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(45deg, #d10000, #0074e4);
+            padding: 15px 0;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        .navbar a {
+            margin: 0 15px;
+            cursor: pointer;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #121212;
+            background-color: white;
+            border-radius: 5px;
+            padding: 5px 15px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 21px;
+            justify-content: space-between;
+        }
+
+        .hamburger div {
+            height: 5px;
+            background-color: white;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .hamburger:hover div {
+            transform: scale(1.1);
+        }
+
+        .navbar-links {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+
+        .navbar-links a {
+            padding: 5px 10px;
+        }
+
+        .mobile-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: white; /* Set the background to white */
+    width: 100%;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    z-index: 1000;
+    padding-top: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lighter shadow for a subtle effect */
+    transition: transform 0.3s ease;
+    pointer-events: none;
+    transform: translateX(-100%);
+}
+
+.mobile-menu.active {
+    display: flex;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+
+/* Mobile menu links */
+.mobile-menu a {
+    margin: 0;
+    padding: 14px 0; /* Adjusted padding */
+    font-size: 1.5em;
+    color: #121212;
+    text-decoration: none;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Border at the top */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Border at the bottom */
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding doesn't interfere with borders */
+    display: block; /* Ensures links fill up the container */
+    line-height: 1.8; /* Line height for better alignment */
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Smaller shadow at the bottom */
+}
+
+/* Mobile menu links hover effect */
+.mobile-menu a:hover {
+    color: #0074e4; /* Change text color on hover */
+    background-color: #fff; /* White background on hover */
+    transform: scale(1.05); /* Slightly enlarge when hovered */
+    box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.1), 0 3px 4px rgba(0, 0, 0, 0.1); /* Top and bottom shadow on hover */
+}
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 20px;
+                justify-content: space-between;
+            }
+
+            .navbar-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+
+            /* Updated Container Layout */
+            .container {
+                flex-direction: column; /* Changed to column for smaller screens */
+                text-align: center;
+                align-items: center;
+            }
+
+            .profile-pic {
+                margin-bottom: 20px; /* Added margin for mobile */
+                margin-right: 0;
+            }
+
+            .text-section {
+                max-width: 100%;
+            }
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+            text-align: left;
+        }
+
+        .profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background-color: #d10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.profile-pic:hover {
+    transform: scale(1.05); /* Enlarge the profile picture */
+    box-shadow: 0px 0px 20px rgba(209, 0, 0, 0.6); /* Even glow on all sides */
+}
+
+        .text-section {
+            max-width: 600px; /* Optional: limits the width of the text section */
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .button-container a {
+            text-decoration: none;
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .resume {
+            background-color: #d10000;
+            color: white;
+        }
+
+        .linkedin {
+            background-color: #0074e4;
+            color: white;
+        }
+
+        .github {
+            background-color: #333;
+            color: white;
+        }
+
+        .section {
+    padding: 50px 20px;
+    margin: 50px auto; /* Center the sections horizontally with space above and below */
+    background-color: white; /* White background for contrast */
+    color: #121212; /* Dark text for readability */
+    border-radius: 10px;
+    width: 85%; /* Use 85% of the screen width */
+    max-width: 1100px; /* Prevent sections from stretching too wide */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Keep the shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.6); /* Red glow on hover */
+}
+        h2 {
+            font-size: 2em;
+            color: #0074e4;
+        }
+
+        .typing {
+            font-family: 'Orbit', sans-serif;
+            font-size: 2em;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #fff;
+            display: inline-block;
+        }
+
+        .blinking-cursor {
+            animation: blink 1.5s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <div class="navbar-links">
+            <a href="#about">ABOUT</a>
+            <a href="#education">EDUCATION</a>
+            <a href="#work">WORK</a>
+            <a href="#skills">SKILLS</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#about">ABOUT</a>
+        <a href="#education">EDUCATION</a>
+        <a href="#work">WORK</a>
+        <a href="#skills">SKILLS</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#contact">CONTACT</a>
+    </div>
+
+    <div id="about" class="container">
+        <div class="profile-pic">
+            <img src="Profile-Photo.jpg" alt="Josh's Profile Picture">
+        </div>
+        <div class="text-section">
+            <h1 id="typed-text" class="typing"></h1>
+            <p>I'm an IT student specializing in <strong>Cloud and System Administration</strong> with a strong foundation in <strong>business, cybersecurity, and networking</strong>. As a <strong>Geek Squad Consultation Agent</strong>, I troubleshoot hardware, software, and network issues while delivering tailored tech solutions. With a passion for problem-solving and continuous learning, I'm eager to grow and contribute to an organization's success.</p>
+            <div class="button-container">
+                <a href="https://docs.google.com/document/d/1UYfAQ5jE83nHin0edWUt1iE5Wj0-bkuG/edit?usp=sharing&ouid=116554995535150575493&rtpof=true&sd=true" target="_blank">
+                    <button class="button resume">Resume</button>
+                </a>
+                <a href="https://www.linkedin.com/in/joshua-sparks-0b4182254" target="_blank">
+                    <button class="button linkedin">LinkedIn</button>
+                </a>
+                <button class="button github">GitHub</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="education" class="section">
+        <h2>Education</h2>
+        <p><strong>Bachelor of Science:</strong> Computer Information Technology (Fall 2025)</p>
+        <p><strong>University:</strong> Northern Kentucky University</p>
+        <p><strong>Minors:</strong> Business, Information Security</p>
+        <p><strong>Dean's List:</strong> Achieved Dean's List recognition for outstanding academic performance.</p>
+    </div>
+
+    <div id="work" class="section">
+        <h2>Work</h2>
+        <p><strong>Best Buy, Geek Squad Consultation Agent</strong></p>
+        <p>Ranked #1 in Individual Sales Productivity (ISP) within the micro market, demonstrating exceptional productivity and the ability to build strong client trust. I leverage advanced problem-solving skills to troubleshoot and repair a variety of hardware and software issues while ensuring the highest standards of customer satisfaction. In addition to technical support, I implement and maintain robust security protocols to safeguard client data and ensure privacy compliance. I manage client appointments, creating tailored service orders that provide complete, personalized tech solutions for each customer's unique needs and lifestyle.</p>
+    </div>
+
+    <div id="skills" class="section">
+        <h2>Skills</h2>
+        <p>Windows, Linux, Mac, Cybersecurity, Cloud Computing, Python, SQL, JavaScript, HTML/CSS.</p>
+    </div>
+
+    <div id="projects" class="section">
+        <h2>Projects</h2>
+        <p>I designed and developed this website from the ground up, turning initial mockups into a fully functional project. It showcases my web development skills and my project management skills. New projects are coming soon!</p>
+    </div>
+
+    <div id="contact" class="section">
+        <h2>Contact</h2>
+        <p><a href="mailto:sparks.josh03@gmail.com">Email</a></p>
+    </div>
+
+    <script>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+    // Toggle mobile menu visibility
+    hamburger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when a link is clicked
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+    });
+        
+     // Close mobile menu when clicking anywhere outside of it
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+        }
+    });
+
+    // Typing effect for the "Hello, I'm Josh" text
+    const textElement = document.getElementById('typed-text');
+    const textToType = "Hello, I'm Josh";
+    let i = 0;
+
+    function typeText() {
+        if (i < textToType.length) {
+            textElement.textContent += textToType.charAt(i);
+            i++;
+            setTimeout(typeText, 200); // Typing speed
+        } else {
+            textElement.classList.add('blinking-cursor');
+        }
+    }
+
+    typeText();
+</script>
+    
+</body>
+</html>
