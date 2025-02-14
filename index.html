@@ -176,8 +176,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 40px;
+    margin-right: 40px; /* Default margin for desktop */
     transition: transform 0.3s ease; /* Smooth transition */
+}
+
+@media (max-width: 768px) {
+    .profile-pic {
+        margin-right: 0; /* Remove the margin on mobile devices */
+    }
 }
 
 .profile-pic:hover {
